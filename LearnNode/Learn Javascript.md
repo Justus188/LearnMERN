@@ -1,3 +1,7 @@
+# General Programming
+## Shortcircuits
+`a = x || y` = `if x: a = x, else a = y`
+
 # npm
 [Guide](https://nodesource.com/blog/an-absolute-beginners-guide-to-using-npm/)
 ## package.json
@@ -12,18 +16,40 @@ Includes dependencies and devDependencies
 `npm i module --global` saves modules globally into system directory
 `npm install` installs from `package.json` `dependencies` and `devDependencies`
 
-# NodeJS execution style:
+# 
+
+# Backend
+Index.js: connects to mongodb
+
+Structure: Request -> router -> Controller -> DAO -> Database
+* Router defines the post, get, put, delete (CRUD) behaviour using callback functions defined in controllers
+* Controllers packages up req, res and handle errors and call DAO CRUD functions using unpackaged data
+* DAO implements database technology-specific calls
+## DAO
+DAO: Data access object, abstracts away database language specific queries (SQL vs mongo), returning an object (json)
+* Usecase: can change query when database changes without changing calling code
+* ORM: Further abstracts DAO converting native oop to queries
+
+
+
+## Controllers
+
+
+# How to Javascript
+## NodeJS execution style:
 Wraps modules in a function:
 `function(exports, require, module, __filename, __dirname){...}`
 
-# Function def
+## Function def
 `function(args) = {function body}`
 `(args) => {function body}`
 
-# String manipulation
+Ternary: `condition ? trueOut : falseOut`
+
+## String manipulation
 ```console.log(`I am: ${myname}`)```
 
-# Class
+## Class
 `class ClassName extends Parent {
     method(arg) {
         this.parentFunction()
@@ -31,12 +57,12 @@ Wraps modules in a function:
 }`
 `const instance = new Class`
 
-# Global Scope
-## Standard functions
+## Global Scope
+### Standard functions
 `console.log(string)` Print to console
 `setTimeout()` Execute function after delay
 `clearTimeout()`
-# Modules
+## Modules
 Every file is a module - functions and variables are created in module scope
 To export:
 `exports.exportedFunctionName = internalFunctionName`
@@ -46,23 +72,23 @@ To import:
 To export a singular function: `module.exports = function`
 Import: `const function = require('./module.js'); function()`
 
-# Builtin modules:
+## Builtin modules:
 [List](https://nodejs.org/dist/latest-v16.x/docs/api/packages.html)
-## path
+### path
 `path.parse(__filename)`: root, dir, base = name + ext, ext, name
-## os
+### os
 `os.freemem()`, `os.totalmem()`
-## fs
+### fs
 `fs.access()` - asynchronous functions need a callback function: `function(err, str_array)`. If error, `err` will be nonNone for error handling. There are also synchronous versions of functions by calling `functionSync`
 `fs.readdir()`
-## events
+### events
 ```
 const EventEmitter = require('events');
 emitter = new EventEmitter();
 emitter.on('eventName', callback); // listener, callback can take arg
 emitter.emit('eventName', arg);
 ```
-## http
+### http
 ```
 const http = require('http');
 const server = http.createServer((req, res) => { // edits the webpage itself
@@ -79,13 +105,13 @@ console.log("Listening on port 3000")
 ```
 For list of events, see node.js documentation
 
-# Installations (using npm install)
-## nodemon
+## Installations (using npm install)
+### nodemon
 Dynamic updating of webpages during development
-## cors
+### cors
 Middleware for some stability thing
-## express
+### express
 Webserver framework
-## mongodb
-## dotenv
+### mongodb
+#### dotenv
 Environment variables from a file
