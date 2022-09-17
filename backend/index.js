@@ -9,11 +9,11 @@ dotenv.config()
 const MongoClient = mongodb.MongoClient
 const port = process.env.PORT || 8000
 
-MongoClient.connect(process.env.RESTREVIEWS_DB_URI, // URI
+MongoClient.connect(process.env.RESTREVIEWS_DB_URI, // db URI
     {wtimeout: 2500})
-    .catch(err => { // error handling
-        console.error(err.stack) // console error
-        process.exit(1)}) // exit "process"
+    .catch(err => {
+        console.error(err.stack) 
+        process.exit(1)}) 
     .then(async client => {
         await RestaurantsDAO.injectDB(client)
         await ReviewsDAO.injectDB(client)

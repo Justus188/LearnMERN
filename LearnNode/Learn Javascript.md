@@ -16,24 +16,42 @@ Includes dependencies and devDependencies
 `npm i module --global` saves modules globally into system directory
 `npm install` installs from `package.json` `dependencies` and `devDependencies`
 
-# 
-
 # Backend
 Index.js: connects to mongodb
 
 Structure: Request -> router -> Controller -> DAO -> Database
 * Router defines the post, get, put, delete (CRUD) behaviour using callback functions defined in controllers
-* Controllers packages up req, res and handle errors and call DAO CRUD functions using unpackaged data
-* DAO implements database technology-specific calls
+* Controllers define functions that:
+  * Take and output req, res
+  * Handles logic and errors
+  * Call DAO CRUD functions using unpackaged params
+* DAO implements database technology-specific calls to database
+
+## Packages
+### nodemon
+Dynamic updating of webpages during development
+### cors
+Middleware for some stability thing
+### express
+Webserver framework
+### mongodb
+### dotenv
+Environment variables from a file
+
 ## DAO
 DAO: Data access object, abstracts away database language specific queries (SQL vs mongo), returning an object (json)
 * Usecase: can change query when database changes without changing calling code
 * ORM: Further abstracts DAO converting native oop to queries
 
+# Frontend
+## Packages
+### bootstrap
+CSS Templates and framework
+### react-router-dom
+Routes URLs to site pages
 
-
-## Controllers
-
+## Boilerplating
+`npx create-react-app dir_name` creates a skeleton
 
 # How to Javascript
 ## NodeJS execution style:
@@ -104,14 +122,3 @@ server.listen(3000); // triggers events
 console.log("Listening on port 3000")
 ```
 For list of events, see node.js documentation
-
-## Installations (using npm install)
-### nodemon
-Dynamic updating of webpages during development
-### cors
-Middleware for some stability thing
-### express
-Webserver framework
-### mongodb
-#### dotenv
-Environment variables from a file
